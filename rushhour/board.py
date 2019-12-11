@@ -116,7 +116,8 @@ class Board(object):
     def readFromfile(filename):
         """Reads a puzzle from a file and creates a new board instance, identifies the red car and board dimensions """
         def get_coord(row_idx):
-            def result((col_idx, value)):
+            def result(x):
+                col_idx, value = x
                 return (value, {'y': row_idx, 'x': col_idx})
             return result
 
@@ -127,7 +128,7 @@ class Board(object):
         raw_board = [list(line.strip()) for line in puzzle_file]
         coords_board = [map(get_coord(row_idx), enumerate(row))
                         for row_idx, row in enumerate(raw_board)]
-        cars_board = flatten([filter(lambda (c, v): c.isalpha(), list(row))
+        cars_board = flatten([filter(lambda x: x[0].isalpha(), list(row))
                               for row in list(coords_board)])
         raw_cars = defaultdict(list)
         for (k, v) in cars_board:

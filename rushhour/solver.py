@@ -15,7 +15,7 @@ H1: Blocking Heuristic,
 """
 import heapq
 from copy import deepcopy
-from board import Board, Orientation
+from .board import Board, Orientation
 
 
 class PriorityQueue:
